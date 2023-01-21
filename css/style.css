@@ -1,0 +1,17 @@
+*{
+    margin:0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.inputProduct{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    padding: 10px;
+    margin:10px;
+}
+
+table,th,td,td{
+    border:1px solid red;
+}
