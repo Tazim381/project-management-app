@@ -5,7 +5,13 @@ function addProduct() {
   const name = document.getElementById("name").value;
   const price = document.getElementById("price").value;
  
+  let item = {
+    p_id:id,
+    p_name:name,
+    p_price: price
+  };
 
+  itemText.push(item);
 
   var addrw = document.getElementById("table");
   var newrw = addrw.insertRow(1);
