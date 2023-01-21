@@ -4,24 +4,25 @@
     </head>
     <body>
 
-        <section class="inputProduct">
+        <form class="inputProduct" id ="inputProduct">
         <div>
             <label>Id</label>
             <input id="id" type="number">
         </div>
         <div>
             <label>Product Name</label>
-            <input id="id" type="number">
+            <input id="name" type="text">
         </div>
         <div>
             <label>Price</label>
-            <input id="id" type="number">
+            <input id="price" type="number">
         </div>
         <button onclick="addProduct()">Add</button>
+        <button onclick="resetAll()">Reset </button>
         
-    </section>
+    </form>
     <section clss="productTable">
-        <table>
+        <table id="table">
             <thead>
                 <th>Id</th>
                 <th>Product Name</th>
