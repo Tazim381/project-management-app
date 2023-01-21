@@ -13,6 +13,9 @@ function showError(value) {
 
 function checkInputValidity(id, name, price) {
   if (id === "" || name === "" || price === "") {
+    if (id === "") showError("id");
+    if (name === "") showError("name");
+    if (price === "") showError("price");
     alert("Emty string is not allowed");
     return 0;
   }
