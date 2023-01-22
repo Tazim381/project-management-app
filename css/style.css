@@ -5,22 +5,22 @@
 }
 
 .inputProduct{
-    display: flex;
-    flex-direction: column;
+   
     border: 2px solid rgb(0, 0, 0);
-    padding: 20px;
-    margin:10px;
+    width: 70%;
+    margin: auto;
+    padding:20px;
+    background-color: #f2f2f2;
 }
+
 table{
     width: 100%; 
 }
 
-table,th,td,td{
-    border:1px solid rgb(40, 39, 39);
-}
 
 table,th,td,td{
-    border:1px solid rgb(30, 30, 30);
+    border:2px solid rgb(30, 30, 30);
+    border-collapse: collapse;
 }
 
 #productTable {
@@ -35,3 +35,43 @@ h3{
     text-align: center;
 }
 
+#delete,#resetData{
+    background-color: rgb(236, 24, 24);
+    border-style: none; 
+    padding:5px; 
+    color:white;
+}
+
+#edit,#add{
+    background-color: rgba(9, 106, 9, 0.8);
+    color:white;
+    padding:5px 10px 5px 10px;
+    border-style: none; 
+}
+#delete:hover,#resetData:hover{
+    cursor: pointer;
+}
+
+#edit:hover, #add:hover {
+    cursor:pointer;
+    color:rgb(70, 104, 70)
+}
+#delete:active, #edit:active,#add:active,#resetData:active{
+    opacity: 0.6;
+}
+
+input[type=text],input[type=number]{
+    width: 50%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    resize: vertical;
+    background-color: rgb(237, 247, 243);
+  }
+
+#add,#resetData{
+    margin-top: 5%;
+}
+#resetData{
+    margin-left: 10%;
+}

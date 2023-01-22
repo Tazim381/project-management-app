@@ -5,23 +5,26 @@
     <body>
 
         <section class="inputProduct" id ="inputProduct">
+        <h3>Insert Correct Data</h3>
+        <form id="inputForm">
         <div>
-            <label>Id</label>
+            <label>Id</label> <br>
             <input id="id" type="number">
             <span id="idError" ></span>
         </div>
         <div>
-            <label>Product Name</label>
+            <label>Product Name</label><br>
             <input id="name" type="text">
             <span id="nameError" ></span>
         </div>
         <div>
-            <label>Price</label>
+            <label>Price</label><br>
             <input id="price" type="number">
             <span id="priceError" ></span>
         </div>
-        <button onclick="addProduct()">Add</button>
-        <button onclick="resetAll()">Reset </button>
+    </form>
+        <button onclick="addProduct()" id="add">Add</button>
+        <button onclick="resetAll()" id="resetData">Reset Form Data </button>
         
     </section>
 
@@ -41,8 +44,8 @@
                     <td>02</td>
                     <td>tazim</td>
                     <td>Human</td>
-                    <td><button>Edit</button></td>
-                    <td><button>Delete</button></td>
+                    <td><button id="edit">Edit</button></td>
+                    <td><button id="delete">Delete</button></td>
                 </tr>
             </tbody>
         </table>
