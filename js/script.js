@@ -100,8 +100,8 @@ function insertItem() {
     cel1.innerHTML = arrayItem.productId;
     cel2.innerHTML = arrayItem.productName;
     cel3.innerHTML = arrayItem.productPrice;
-    cel4.innerHTML = "<button>Edit</button>";
-    cel5.innerHTML = `<button onclick='deleteItem(${arrayItem.productId})'>Delete</button>`;
+    cel4.innerHTML = '<button id="edit">Edit</button>';
+    cel5.innerHTML = `<button id="delete" onclick='deleteItem(${arrayItem.productId})'>Delete</button>`;
   });
 }
 function addProduct() {
@@ -125,9 +125,6 @@ function addProduct() {
   return false;
 }
 
-function resetAll() {
-  document.getElementById("inputProduct").reset();
-}
 
 function deleteItem(id) {
   alert(id);
@@ -144,4 +141,9 @@ function deleteItem(id) {
     }
     iterator++;
   });
+}
+
+
+function resetAll() {
+  document.getElementById("inputForm").reset();
 }
