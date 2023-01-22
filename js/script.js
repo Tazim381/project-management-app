@@ -100,7 +100,7 @@ function insertItem() {
     cel1.innerHTML = arrayItem.productId;
     cel2.innerHTML = arrayItem.productName;
     cel3.innerHTML = arrayItem.productPrice;
-    cel4.innerHTML = '<button id="edit">Edit</button>';
+    cel4.innerHTML = `<button id="edit" onclick='editItem(${arrayItem.productId})'>Edit</button>`;
     cel5.innerHTML = `<button id="delete" onclick='deleteItem(${arrayItem.productId})'>Delete</button>`;
   });
 }
@@ -144,7 +144,30 @@ function deleteItem(id) {
 }
 }
 
-
+function editItem(id){
+  document.getElementById("inputProduct").hidden = true;
+  document.getElementById("editContact").style.display = '';
+  document.getElementById("editContact").innerHTML =
+        '<section class="inputProduct">'+
+        '<h3>Update Value</h3>'+
+        '<div>'+
+        '<label>Product Id</label>'+'<br>'+
+        '<input type="number"  id="numberInput2" readonly="readonly" value="' +itemText[0].productName + '">' +
+        '</div>'+
+        '<div>'+
+        '<label>Product Name</label>'+'<br>'+
+        '<input type="text"  id="numberInput2" value="' +itemText[0].productName + '">' +
+        '</div>'+
+        '<div>'+
+        '<label>Product Price</label>'+'<br>'+
+        '<input type="number"  id="groupInput2" value="' + itemText[0].productPrice+ '">' +
+        '</div>'+
+        '<div>'+
+        '<button id="add">Update</button>'+
+       '</div>'+
+       '</section>';
+}
 function resetAll() {
   document.getElementById("inputForm").reset();
+  
 }
