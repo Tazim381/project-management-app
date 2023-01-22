@@ -127,7 +127,7 @@ function addProduct() {
 
 
 function deleteItem(id) {
-  alert(id);
+  if(confirm("are you sure to delete id "+`${id}` +" ? ")) {
   let newId = id.toString();
   let iterator = 0;
   itemText.forEach(function (arrayItem) {
@@ -141,6 +141,7 @@ function deleteItem(id) {
     }
     iterator++;
   });
+}
 }
 
 
