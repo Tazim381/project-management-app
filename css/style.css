@@ -35,11 +35,16 @@ h3{
     text-align: center;
 }
 
-#delete,#resetData{
+#delete,#resetData, #back{
     background-color: rgb(236, 24, 24);
     border-style: none; 
     padding:5px; 
     color:white;
+    border-radius: 5px;
+}
+
+#back{
+    margin:5%;
 }
 
 #edit,#add{
@@ -47,8 +52,9 @@ h3{
     color:white;
     padding:5px 10px 5px 10px;
     border-style: none; 
+    border-radius: 5px;
 }
-#delete:hover,#resetData:hover{
+#delete:hover,#resetData:hover,#back:hover{
     cursor: pointer;
 }
 
@@ -56,7 +62,7 @@ h3{
     cursor:pointer;
     color:rgb(70, 104, 70)
 }
-#delete:active, #edit:active,#add:active,#resetData:active{
+#delete:active, #edit:active,#add:active,#resetData:active, #back:active{
     opacity: 0.6;
 }
 
