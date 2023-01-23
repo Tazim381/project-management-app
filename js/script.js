@@ -20,17 +20,25 @@ function dontShowError(value) {
   error.style.color = "";
 }
 
+
 function checkInputValidity(id, name, price) {
   if (id === "" || name === "" || price === "") {
-    if (id === "") showError("id");
-    if (name === "") showError("name");
-    if (price === "") showError("price");
     alert("Emty string is not allowed");
+    if (id === "") showError("id");
+    if (name === "") {
+      showError("name");
+      showError("productName");
+    } 
+    if (price === "") {
+      showError("price");
+      showError("productPrice");
+    } 
     return 0;
   }
   if (price < 0) {
-    showError("price");
     alert("price should be a positive number");
+    showError("price");
+    showError("productPrice");
     return 0;
   } else {
     dontShowError("price");
@@ -38,6 +46,7 @@ function checkInputValidity(id, name, price) {
 
   if (price > 100000) {
     showError("price");
+    showError("productPrice");
     alert("price must be less than  100000 ");
     return 0;
   } else {
@@ -46,6 +55,7 @@ function checkInputValidity(id, name, price) {
 
   if (name.length > 60) {
     showError("name");
+    showError("productName");
     alert("product name should be less than 60 character");
     return 0;
   } else {
@@ -82,7 +92,7 @@ function insertItem() {
   var addrw = document.getElementById("table");
   var tableRows = addrw.getElementsByTagName('tr');
   var rowCount = tableRows.length;
-  console.log(rowCount);
+  
   for (var x=rowCount-1; x>0; x--) {
      document.getElementById("table").deleteRow(x);
   }
@@ -104,9 +114,11 @@ function insertItem() {
     cel5.innerHTML = `<button id="delete" onclick='deleteItem(${arrayItem.productId})'>Delete</button>`;
   });
 }
+
 function addProduct() {
   const id = document.getElementById("id").value;
-  const name = document.getElementById("name").value;
+  let name = document.getElementById("name").value;
+  name = name.trim();
   const price = document.getElementById("price").value;
 
   if (checkInputValidity(id, name, price) == 0) {
@@ -133,11 +145,11 @@ function deleteItem(id) {
   itemText.forEach(function (arrayItem) {
     const x = arrayItem.productId;
     if (x === newId) {
-      console.log("yes");
-      console.log(iterator);
+      
       itemText.splice(iterator, 1);
       console.log(itemText);
       insertItem();
+      
     }
     iterator++;
   });
@@ -145,27 +157,63 @@ function deleteItem(id) {
 }
 
 function editItem(id){
+  
+  if(confirm("are you sure to edit id "+`${id}` +" ? ")) {
   document.getElementById("inputProduct").hidden = true;
+  document.getElementById("editContact").hidden = false;
+  let newId = id.toString();
+  let iterator = 0;
+  for(iterator=0; iterator<itemText.length; iterator++) {
+    const x = itemText[iterator].productId;
+    if (x === newId) {
+        break;
+    } 
+  }
+  console.log(iterator);
+  console.log(itemText[iterator]);
   document.getElementById("editContact").style.display = '';
   document.getElementById("editContact").innerHTML =
         '<section class="inputProduct">'+
         '<h3>Update Value</h3>'+
         '<div>'+
         '<label>Product Id</label>'+'<br>'+
-        '<input type="number"  id="numberInput2" readonly="readonly" value="' +itemText[0].productName + '">' +
+        '<input type="number"  id="ProductId" readonly="readonly" value="' +itemText[iterator].productId+ '">' +
+        '<span id="productIdError" ></span>'+
         '</div>'+
         '<div>'+
         '<label>Product Name</label>'+'<br>'+
-        '<input type="text"  id="numberInput2" value="' +itemText[0].productName + '">' +
+        '<input type="text"  id="productName" value="' +itemText[iterator].productName + '">' +
+        '<span id="productNameError" ></span>'+
         '</div>'+
         '<div>'+
         '<label>Product Price</label>'+'<br>'+
-        '<input type="number"  id="groupInput2" value="' + itemText[0].productPrice+ '">' +
+        '<input type="number"  id="productPrice" value="' + itemText[iterator].productPrice+ '">' +
+        '<span id="productPriceError" ></span>'+
         '</div>'+
-        '<div>'+
-        '<button id="add">Update</button>'+
+        '<div>'+ 
+        `<button id="add" onclick='updateItem(${iterator})' >Update</button>`+
+        `<button id="back" onclick='backButton()' >Back</button>`+
        '</div>'+
        '</section>';
+}
+}
+
+function updateItem(iterator) {
+   //const id = document.getElementById("productId").value;
+   const name = document.getElementById("productName").value;
+   const price = document.getElementById("productPrice").value;
+   itemText[iterator].productName = name.trim();
+   itemText[iterator].productPrice = price;
+    if (checkInputValidity(id, name, price) == 0) {
+    return;
+  }
+  insertItem();
+   
+}
+
+function backButton() {
+  document.getElementById("inputProduct").hidden = false;
+  document.getElementById("editContact").hidden = true;
 }
 function resetAll() {
   document.getElementById("inputForm").reset();
