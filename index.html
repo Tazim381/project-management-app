@@ -1,62 +1,48 @@
 <html>
-    <head>
-        <link rel ="stylesheet" href ="./css/style.css">
-    </head>
-    <body>
-
-        <section class="inputProduct" id ="inputProduct">
-        <h3>Insert Correct Data</h3>
-        <form id="inputForm">
+  <head>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <section class="inputProduct" id="inputProduct">
+      <h3>Insert Correct Data</h3>
+      <form id="inputForm">
         <div>
-            <label>Id</label> <br>
-            <input id="id" type="number">
-            <span id="idError" ></span>
+          <label>Id</label> <br />
+          <input id="id" type="number" />
+          <span id="idError"></span>
         </div>
         <div>
-            <label>Product Name</label><br>
-            <input id="name" type="text">
-            <span id="nameError" ></span>
+          <label>Product Name</label><br />
+          <input id="name" type="text" />
+          <span id="nameError"></span>
         </div>
         <div>
-            <label>Price</label><br>
-            <input id="price" type="number">
-            <span id="priceError" ></span>
+          <label>Price</label><br />
+          <input id="price" type="number" />
+          <span id="priceError"></span>
         </div>
-    </form>
-        <button onclick="addProduct()" id="add">Add</button>
-        <button onclick="resetAll()" id="resetData">Reset Form Data </button>
-        
+      </form>
+      <button onclick="addProduct()" id="add">Add</button>
+      <button onclick="resetAll()" id="resetData">Reset Form Data</button>
     </section>
     <section>
-        <div id="editContact"></div>
+      <div id="editContact"></div>
     </section>
 
     <section id="productTable">
-        <h3>Inserted Data</h3>
-        <table id="table">
-            <thead>
-                <th>Id</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>01</td>
-                    <td>Demo Data</td>
-                    <td>100</td>
-                    <td><button id="edit">Edit</button></td>
-                    <td><button id="delete">Delete</button></td>
-                </tr>
-            </tbody>
-        </table>
-        
+      <h3>Inserted Data</h3>
+      <table id="table">
+        <thead>
+          <th>Id</th>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </thead>
+        <tbody></tbody>
+      </table>
     </section>
 
-    
     <script src="./js/script.js"></script>
-
-    </body>
-
+  </body>
 </html>
