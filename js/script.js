@@ -52,7 +52,6 @@ function checkInputValidity(id, name, price) {
   } else {
     dontShowError("price");
   }
-
   if (name.length > 60) {
     showError("name");
     showError("productName");
@@ -74,19 +73,30 @@ function constractObjectArray(id, name, price) {
 
 function checkUniqueId(id, itemText) {
   const result = 1;
-  itemText.forEach(function (arrayItem) {
-    var x = arrayItem.productId;
-    if (x === id) {
+  let newId = id.toString();
+  // itemText.forEach(function (arrayItem) {
+  //   let x = arrayItem.productId;
+  //   if (x === id) {
+  //     showError("id");
+  //     alert("Id already exist");
+  //     result = 0;
+  //     return;
+  //   } else {
+  //     dontShowError("id");
+  //   }
+  // });
+  if (itemText.find(arrayItem => arrayItem.productId === newId)) {
       showError("id");
       alert("Id already exist");
       result = 0;
-      return;
-    } else {
-      dontShowError("id");
-    }
-  });
+      return;  
+  }
+  else {
+    dontShowError("id");
+  }
   return result;
 }
+
 
 function insertItem() {
   var addrw = document.getElementById("table");
@@ -111,9 +121,10 @@ function insertItem() {
     cel2.innerHTML = arrayItem.productName;
     cel3.innerHTML = arrayItem.productPrice;
     cel4.innerHTML = `<button id="edit" onclick='editItem(${arrayItem.productId})'>Edit</button>`;
-    cel5.innerHTML = `<button id="delete" onclick='deleteItem(${arrayItem.productId})'>Delete</button>`;
+    cel5.innerHTML = `<button id="delete" onclick='deleteItem(${arrayItem.productId}, this)'>Delete</button>`;
   });
 }
+
 
 function addProduct() {
   const id = document.getElementById("id").value;
@@ -138,21 +149,34 @@ function addProduct() {
 }
 
 
-function deleteItem(id) {
+function deleteItem(id, row) {
   if(confirm("are you sure to delete id "+`${id}` +" ? ")) {
   let newId = id.toString();
-  let iterator = 0;
-  itemText.forEach(function (arrayItem) {
-    const x = arrayItem.productId;
-    if (x === newId) {
+  // let iterator = 0;
+  // itemText.forEach(function (arrayItem) {
+  //   const x = arrayItem.productId;
+  //   if (x === newId) {
       
-      itemText.splice(iterator, 1);
-      console.log(itemText);
-      insertItem();
+  //     itemText.splice(iterator, 1);
+  //     console.log(itemText);
+  //     let index = row.parentNode.parentNode.rowIndex;
+  //     document.getElementById("table").deleteRow(index);
       
+  //   }
+  //   iterator++;
+  // });
+  const iterator =  itemText.findIndex(function(item){
+    if (item.productId === newId) {
+     return true;
     }
-    iterator++;
-  });
+ });
+
+      itemText.splice(iterator, 1);
+      //console.log(itemText);
+      let index = row.parentNode.parentNode.rowIndex;
+      console.log(iterator);
+      console.log(index);
+      document.getElementById("table").deleteRow(index);
 }
 }
 
@@ -162,13 +186,20 @@ function editItem(id){
   document.getElementById("inputProduct").hidden = true;
   document.getElementById("editContact").hidden = false;
   let newId = id.toString();
-  let iterator = 0;
-  for(iterator=0; iterator<itemText.length; iterator++) {
-    const x = itemText[iterator].productId;
-    if (x === newId) {
-        break;
-    } 
-  }
+  // let iterator = 0;
+  // for(iterator=0; iterator<itemText.length; iterator++) {
+  //   const x = itemText[iterator].productId;
+  //   if (x === newId) {
+  //       break;
+  //   }
+  // }
+
+  const iterator =  itemText.findIndex(function(item){
+     if (item.productId === newId) {
+      return true;
+     }
+  });
+
   console.log(iterator);
   console.log(itemText[iterator]);
   document.getElementById("editContact").style.display = '';
@@ -207,14 +238,15 @@ function updateItem(iterator) {
     if (checkInputValidity(id, name, price) == 0) {
     return;
   }
-  insertItem();
-   
+  insertItem();  
 }
+
 
 function backButton() {
   document.getElementById("inputProduct").hidden = false;
   document.getElementById("editContact").hidden = true;
 }
+
 function resetAll() {
   document.getElementById("inputForm").reset();
   
